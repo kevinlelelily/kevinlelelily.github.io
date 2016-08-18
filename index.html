@@ -245,6 +245,11 @@
                     <p>
                       
                         
+angular的页面会默认采用自带的templateCache作为缓存，这对于我们不改动的页面是个优势，但是，对于一些我们需要改动维护的页面就出现问题了，毕竟，不是每个用户都会配合着去清理浏览器缓存重新加载页面的
+
+网上有写方法尝试着对于我的应用没有效果，比如
+在ng-router里配置cache:false 或者cache:’false’
+ 123.state(&apos;auth&apos;, &#123;	cache:false
                       
                     </p>
                     
