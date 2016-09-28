@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Hello World | 松花酿酒，春水煎茶</title>
+  <title>vue+webpack学习使用的一些心得--浅谈，浅谈，浅谈 | 松花酿酒，春水煎茶</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -104,9 +104,9 @@
                 <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
                 <ul class="sb-submenu">
                     
-                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                        <li><a href="/" target="_BLANK" class="animsition-link">kevin&#39;s blog</a></li>
                     
-                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                        <li><a href="http://www.cutecomm.com" target="_BLANK" class="animsition-link">co.</a></li>
                     
                 </ul>
             </li>
@@ -120,6 +120,8 @@
                     <li><a href="http://longlongblog.cn/" class="animsition-link">龙龙</a></li>
                     
                     <li><a href="http://cn.honglu.me/" class="animsition-link">豆浆</a></li>
+                    
+                    <li><a href="http://yanyingxiang.github.io/" class="animsition-link">祥子</a></li>
                     
                 </ul>
             </li>
@@ -197,39 +199,58 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-08-18T06:43:12.415Z" itemprop="datePublished">
-          2016-08-18
+      <time datetime="2016-09-28T04:39:42.000Z" itemprop="datePublished">
+          2016-09-28
       </time>
     
 </span>
-                <h1>Hello World</h1>
+                <h1>vue+webpack学习使用的一些心得--浅谈，浅谈，浅谈</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+      		<blockquote>
+<p>最近折腾vue+webpack，因为之前用angular1.3，写界面和controller比较费劲，angular总体来说是重了一些，同时比较看中webpack打包和管理机制。恰巧，公司web端聊天项目需要重构（之前用jquery和bootstrap），需要学习的只是还不少：vue语法自不必说，还有vue+vuex项目构架、webpack配置、es6的一些语法。但是一想到可以学习新东西啊，我那个小心脏就激动不已。他山之石，可以攻玉。</p>
+</blockquote>
+<h2 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h2><ul>
+<li>vue官网给出了一套模板引擎，包管理运用了npm，这就相当方便了，并且本地可以起一个基于node的服务器，支持热插拔，代码写完保存后服务器端直接刷新，不用频繁刷浏览器了。整个vuedemo整合到本地配置完不到10分钟；</li>
+<li>关于vuex方面，自己也是看了好久vuex的文档，虽说是参考了redux的一些思想，但是没搞过react，所以一直把vuex当做数据存储模块用。三个方面：state,mutation,action。<ol>
+<li>state里面变量的值在组件里是不能通过组件方法修改的，只能通过mutation方法进行修改，因为vuex本来就是状态管理的，如果在组件方法里就将state变量修改了，vuex是无法保存变量状态的，那么通过getter方法获得变量时的状态值就不确定了；</li>
+<li>mutation里面的方法不能套用其他mutation方法，也就是不支持mutation嵌套，但是可以处理一些业务逻辑；</li>
+<li>action是支持嵌套的，action方法必须是const，采用es6的export导出方法;action里面的方法名不要和组件里的方法名重名，否则会把组件里的方法名覆盖掉；</li>
+</ol>
+</li>
+</ul>
+<p>##webpack</p>
+<ul>
+<li>webpack的配置文件网上有很多模板，这里主要记录下proxy server（代理服务器）这块,在devServer里配置<pre><code>proxy: {  
+    &apos;/cchelper-dfs/*&apos;: {  //engineer
+        target: &apos;http://115.22.23.49:80&apos;,  
+        secure: false  
+    },
+    &apos;/http-bind/*&apos;: {
+        target: &apos;http://115.29.113.27:7070&apos;,  
+        secure: false  
+     }
+}
+</code></pre>这是我的在处理异步文件上传和登陆xmpp服务器时做的配置，配置完需要重新启动node服务器让配置文件生效，谨记！其他跟网上配置大同小异。</li>
+</ul>
+<p><strong> 基于web的聊天项目:<a href="https://github.com/cutecomm/webchat-b2b" target="_blank" rel="external">webchat-b2b</a></strong></p>
+<p>这个项目是边学vue边做的项目，里面的一些代码安排可能不太合理，比如xmpp登陆配置方便我就全放到store里面了，connection也做为了state的一个变量，是否合理呢？希望有这方面的大牛指点，欢迎拍砖！</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/08/18/test/" style="float: left;">
-        ← Hello World
-    </a>
     
+    <a class="pull-right" href="/2016/08/18/关于Angular页面缓存的问题/">
+        关于Angular页面缓存的问题 →
+    </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/08/18/hello-world/" data-title="Hello World" data-url="http://yoursite.com/2016/08/18/hello-world/"></div>
+<div class="ds-thread" data-thread-key="2016/09/28/vue-webpack学习使用的一些心得/" data-title="vue+webpack学习使用的一些心得--浅谈，浅谈，浅谈" data-url="http://yoursite.com/2016/09/28/vue-webpack学习使用的一些心得/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
